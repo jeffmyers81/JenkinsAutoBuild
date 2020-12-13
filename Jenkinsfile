@@ -10,7 +10,7 @@ node {
         }
         stage('Building Image') {
  	    newApp = docker.build registry + ":$BUILD_NUMBER"     
-            }
+            
         }
         stage('Registering Image') {
             docker.withRegistry( '', registryCredential ) {
@@ -28,5 +28,4 @@ node {
         sh "docker rmi $registry:latest"
 
     }
-
 }
