@@ -1,5 +1,6 @@
 node {
 
+    checkout scm
     env.AWS_ECR_LOGIN=true
     def newApp
     def registry = 'jeffmyers81/devops_project'
