@@ -9,16 +9,13 @@ node {
             sh 'mvn -B -DskipTests clean package'
         }
         stage('Building Image') {
-            docker.withRegistry( registry, registryCredential) {
-                def buildName = registry + ":$BUILD_NUMBER"
-                    newApp = docker.build buildName
-                    newApp.push()
+ 	    newApp = docker.build registry + ":$BUILD_NUMBER"     
             }
         }
         stage('Registering Image') {
-            docker.withRegistry( registry, registryCredential ) {
+            docker.withRegistry( '', registryCredential ) {
 
-    		newApp.push 'latest2'
+    		newApp.push()
 
         }
 
